@@ -1,0 +1,100 @@
+{
+  "entities": {
+    "HomeSettings": {
+      "title": "Home Settings",
+      "description": "Global settings for the home page intro and contact info",
+      "type": "object",
+      "properties": {
+        "introText": { "type": "string" },
+        "address": { "type": "string" },
+        "instagramUrl": { "type": "string" },
+        "heroImageUrl": { "type": "string" }
+      },
+      "required": ["introText", "address", "instagramUrl"]
+    },
+    "PortfolioEntry": {
+      "title": "Portfolio Entry",
+      "description": "A YouTube video entry for the portfolio",
+      "type": "object",
+      "properties": {
+        "artistName": { "type": "string" },
+        "songTitle": { "type": "string" },
+        "youtubeId": { "type": "string" },
+        "genre": { "type": "string" },
+        "category": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["artistName", "songTitle", "youtubeId", "genre"]
+    },
+    "EquipmentCategory": {
+      "title": "Equipment Category",
+      "description": "A category of studio gear",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "items": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["name", "items"]
+    },
+    "PricingCard": {
+      "title": "Pricing Card",
+      "description": "A pricing tier card",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "price": { "type": "string" },
+        "description": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["title", "price", "description"]
+    },
+    "FAQItem": {
+      "title": "FAQ Item",
+      "description": "A question and answer pair",
+      "type": "object",
+      "properties": {
+        "question": { "type": "string" },
+        "answer": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["question", "answer"]
+    },
+    "WorkflowStep": {
+      "title": "Workflow Step",
+      "description": "A step in the studio workflow",
+      "type": "object",
+      "properties": {
+        "stepNumber": { "type": "number" },
+        "title": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["stepNumber", "title", "description"]
+    }
+  },
+  "firestore": {
+    "settings/home": {
+      "schema": "HomeSettings",
+      "description": "Global home settings"
+    },
+    "portfolio": {
+      "schema": "PortfolioEntry",
+      "description": "List of portfolio videos"
+    },
+    "equipment": {
+      "schema": "EquipmentCategory",
+      "description": "Studio gear list"
+    },
+    "pricing": {
+      "schema": "PricingCard",
+      "description": "Pricing cards"
+    },
+    "faq": {
+      "schema": "FAQItem",
+      "description": "Frequently asked questions"
+    },
+    "workflow": {
+      "schema": "WorkflowStep",
+      "description": "Studio workflow steps"
+    }
+  }
+}

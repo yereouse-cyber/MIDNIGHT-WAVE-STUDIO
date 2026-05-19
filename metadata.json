@@ -1,0 +1,6 @@
+{
+  "name": "Midnight Wave Studio",
+  "description": "Professional music recording and mixing studio website with portfolio and admin features.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
