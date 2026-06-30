@@ -33,7 +33,7 @@ export default function PricingAdmin() {
   }, []);
 
   const addCard = () => {
-    setPrices([...prices, { id: `temp-${Date.now()}`, title: "", price: "", description: "", order: prices.length }]);
+    setPrices([...prices, { id: `temp-${Date.now()}`, title: "", price: "", subtitle: "", description: "", order: prices.length }]);
   };
 
   const removeCard = async (id: string) => {
@@ -87,22 +87,34 @@ export default function PricingAdmin() {
                   value={item.title} 
                   onChange={(e) => setPrices(prices.map(p => p.id === item.id ? { ...p, title: e.target.value } : p))}
                   className="bg-white/5 border-white/10 rounded-none text-white text-[13px]"
+                  placeholder="e.g. Mixing, Mastering"
                 />
               </div>
               <div className="space-y-2">
-                <Label className="text-[10px] uppercase tracking-widest text-white">Rate</Label>
+                <Label className="text-[10px] uppercase tracking-widest text-white">Rate / Price (Korean, English, Numbers allowed)</Label>
                 <Input 
                   value={item.price} 
                   onChange={(e) => setPrices(prices.map(p => p.id === item.id ? { ...p, price: e.target.value } : p))}
                   className="bg-white/5 border-white/10 rounded-none text-white text-xl font-bold"
+                  placeholder="e.g. ₩ 150,000, 15만원, 별도문의"
                 />
               </div>
               <div className="space-y-2">
-                <Label className="text-[10px] uppercase tracking-widest text-white">Details</Label>
+                <Label className="text-[10px] uppercase tracking-widest text-white">Subtitle / Option (Optional)</Label>
+                <Input 
+                  value={item.subtitle || ""} 
+                  onChange={(e) => setPrices(prices.map(p => p.id === item.id ? { ...p, subtitle: e.target.value } : p))}
+                  className="bg-white/5 border-white/10 rounded-none text-white text-[13px]"
+                  placeholder="e.g. 1프로 (3h 30m), Track 당"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label className="text-[10px] uppercase tracking-widest text-white">Details (Korean/English allowed)</Label>
                 <Textarea 
                   value={item.description} 
                   onChange={(e) => setPrices(prices.map(p => p.id === item.id ? { ...p, description: e.target.value } : p))}
                   className="bg-white/5 border-white/10 h-24 rounded-none text-white text-[13px] leading-relaxed"
+                  placeholder="이 티어의 세부 설명 및 혜택"
                 />
               </div>
             </CardContent>

@@ -11,41 +11,50 @@ interface PricingItem {
 }
 
 export default function Pricing() {
-  const { loading } = useStudioData<PricingItem>("pricing");
+  const { data, loading } = useStudioData<PricingItem>("pricing");
 
-  const pricingCategories: PricingItem[] = [
+  const defaultPricingCategories: PricingItem[] = [
     {
       id: "mixing",
       title: "Mixing",
       price: "₩ 500,000",
-      description: "전문적인 기술을 기반으로 완성도 높은 사운드를 만드는 프로페셔널 믹싱"
+      description: "전문적인 기술을 기반으로 완성도 높은 사운드를 만드는 프로페셔널 믹싱",
+      order: 0
     },
     {
       id: "mastering",
       title: "Mastering",
       price: "₩ 100,000",
-      description: "릴리즈 환경에 최적화된 최종 음원을 완성하는 마스터링"
+      description: "릴리즈 환경에 최적화된 최종 음원을 완성하는 마스터링",
+      order: 1
     },
     {
       id: "mixing-mastering",
       title: "Mixing + Mastering",
       price: "₩ 600,000",
-      description: "최상의 결과물을 제공하는 믹싱 및 마스터링 패키지"
+      description: "최상의 결과물을 제공하는 믹싱 및 마스터링 패키지",
+      order: 2
     },
     {
       id: "recording",
       title: "Recording",
       price: "₩ 150,000",
       subtitle: "1프로 (3h 30m)",
-      description: "최적의 어쿠스틱 환경에서 진행되는 고음질 레코딩"
+      description: "최적의 어쿠스틱 환경에서 진행되는 고음질 레코딩",
+      order: 3
     },
     {
       id: "vocal-tuning",
       title: "Vocal Tuning",
       price: "₩ 150,000",
-      description: "보컬의 음정과 타이밍을 정교하게 다듬는 작업"
+      description: "보컬의 음정과 타이밍을 정교하게 다듬는 작업",
+      order: 4
     }
   ];
+
+  const pricingCategories = (data && Array.isArray(data) && data.length > 0)
+    ? [...data].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    : defaultPricingCategories;
 
   return (
     <div id="pricing" className="py-24 border-b border-studio-border">
